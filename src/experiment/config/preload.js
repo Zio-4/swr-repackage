@@ -14,6 +14,5 @@ export const mediaAssets = generateAssetObject(assets, bucketURI)
 export const preloadTrials = createPreloadTrials(assets, bucketURI).default
 
 
-console.log('asset obj: ', mediaAssets)
-
-console.log('preload trials: ', preloadTrials)
+// console.log('asset obj: ', mediaAssets)
+// console.log('preload trials: ', preloadTrials)

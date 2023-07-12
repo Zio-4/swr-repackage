@@ -79,15 +79,18 @@ const divideTrial2Block = (n1, n2, nBlock) => {
   return [Math.floor(n / nBlock), Math.floor(n / nBlock), n - (2 * Math.floor(n / nBlock))];
 };
 
-export const stimulusCountLists = {
-  fullAdaptive: [82, 82, 81],
-  fullRandom: [25, 25, 25],
-  shortAdaptive: divideTrial2Block(numAdaptive, numNew, 3),
-  longAdaptive: divideTrial2Block(numAdaptive, numNew, 3),
-  fullItemBank: divideTrial2Block(numValidated, numNew, 3),
-  demo: [84],
-  testAdaptive: [6, 4, 4],
-  testRandom: [6, 4, 4],
+export const stimulusCountLists = (userMode, numNew, numAdaptive) => {
+  const modeList = {fullAdaptive: [82, 82, 81],
+    fullRandom: [25, 25, 25],
+    shortAdaptive: divideTrial2Block(numAdaptive, numNew, 3),
+    longAdaptive: divideTrial2Block(numAdaptive, numNew, 3),
+    fullItemBank: divideTrial2Block(numValidated, numNew, 3),
+    demo: [84],
+    testAdaptive: [6, 4, 4],
+    testRandom: [6, 4, 4]
+  }
+
+  return modeList[userMode]
 };
 
 export const shuffle = (array) => {
@@ -111,7 +114,7 @@ export const initConfig = async (firekit, params, displayElement) => {
           schoolId, 
           taskVariant, 
           userMetadata, 
-          testingOnly, 
+          skipInstructions, 
           studyId, 
           classId, 
           urlParams,
@@ -130,7 +133,7 @@ export const initConfig = async (firekit, params, displayElement) => {
           schoolId, 
           taskVariant: taskVariant || "pilot", 
           userMetadata, 
-          testingOnly, 
+          skipInstructions: skipInstructions || false, 
           studyId, 
           classId, 
           urlParams,
@@ -144,7 +147,7 @@ export const initConfig = async (firekit, params, displayElement) => {
           //
           adaptive2new: Math.floor(numAdaptive / numNew),
           stimulusRuleList: stimulusRuleLists[userMode],
-          stimulusCountList: stimulusCountLists[userMode],
+          stimulusCountList: stimulusCountLists(userMode, numNew, numAdaptive),
           totalTrialsPractice: 5,
           countSlowPractice: 2,
           nRandom: 5,

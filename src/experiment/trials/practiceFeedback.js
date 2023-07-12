@@ -38,7 +38,7 @@ const feedbackStimulus = () => {
 
 export const practice_feedback = {
   type: jsPsychAudioMultiResponse,
-  response_allowed_while_playing: config.testingOnly,
+  response_allowed_while_playing: true || config.skipInstructions,
   prompt_above_buttons: true,
   stimulus: () => feedbackStimulus(),
   prompt: () => {

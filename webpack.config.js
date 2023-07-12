@@ -10,7 +10,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const commonConfig = {
   entry: {
-    index: path.resolve(__dirname, 'src/experiment', 'experiment.js'),
+    index: path.resolve(__dirname, 'src/experiment', 'serve.js'),
   },
   output: {
     filename: '[name].[contenthash].bundle.js',

@@ -55,28 +55,12 @@ import path from 'path-browserify'
 /* simple variable for calculating sum of an array */
 const arrSum = (arr) => arr.reduce((a, b) => a + b, 0);
 
-/* csv helper function */
-export const readCSV = (url) =>
-  new Promise((resolve) => {
-    Papa.parse(url, {
-      download: true,
-      header: true,
-      dynamicTyping: true,
-      skipEmptyLines: true,
-      complete: function (results) {
-        const csv_stimuli = results.data;
-        resolve(csv_stimuli);
-      },
-    });
-  });
 
 export const updateProgressBar = () => {
   const curr_progress_bar_value = jsPsych.getProgressBarCompleted();
   jsPsych.setProgressBar(curr_progress_bar_value + 1 / arrSum(config.stimulusCountList));
 };
 
-export const realpseudo2arrow = (realpseudo) =>
-  (realpseudo === "real" ? "ArrowRight" : "ArrowLeft");
 
 // This is to track correct trials
 export const updateCorrectChecker = () => {

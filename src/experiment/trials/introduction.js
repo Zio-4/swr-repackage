@@ -69,7 +69,7 @@ const introTrialsMapped = introTrialsContent.map((trial, i) => {
       keyboard_choices: () => isTouchScreen ? "NO_KEYS" : "ALL_KEYS",
       button_choices: () => isTouchScreen ? ["HERE"] : [],
       button_html: () => `<button class='button'>${i18next.t('navigation.continueButtonTextMobile', { action: `${isTouchScreen && i === 2 ? i18next.t('terms.practice') : i18next.t('terms.continue')}`})}</button>`,
-      response_allowed_while_playing: config.testingOnly,
+      response_allowed_while_playing: true || config.skipInstructions,
       prompt: trial.prompt,
       prompt_above_buttons: true,
     }
@@ -87,7 +87,7 @@ export const post_practice_intro = {
   keyboard_choices: () => isTouchScreen ? "NO_KEYS" : "ALL_KEYS",
   button_choices: () => isTouchScreen ? ["HERE"] : [],
   button_html: () => `<button class='button'>${i18next.t('navigation.continueButtonTextMobile', { action: `${i18next.t('terms.begin')}` })}</button>`,
-  response_allowed_while_playing: config.testingOnly,
+  response_allowed_while_playing: true || config.skipInstructions,
   prompt: () => {
     return (`
     <h1>${i18next.t('introTrials.postPracticeTrial.header')}</h1>

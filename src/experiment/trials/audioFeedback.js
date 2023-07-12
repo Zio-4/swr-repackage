@@ -1,14 +1,17 @@
 import jsPsychAudioKeyboardResponse from "@jspsych/plugin-audio-keyboard-response";
 import store from "store2";
 import { mediaAssets, isTouchScreen } from "../config/preload";
-import { config } from "../config/config";
+// import { config } from "../config/config";
+import configStore from "../../configStore";
+
+let configValues = configStore.getConfig()
 
 const audio_response = {
   type: jsPsychAudioKeyboardResponse,
   stimulus: () => {
-    if (config.audioFeedback === "binary" && store.session("currentTrialCorrect")) {
+    if (configValues.audioFeedback === "binary" && store.session("currentTrialCorrect")) {
       return mediaAssets.audio.coin
-    } else if (config.audioFeedback === "binary" && !store.session("currentTrialCorrect")) {
+    } else if (configValues.audioFeedback === "binary" && !store.session("currentTrialCorrect")) {
       return mediaAssets.audio.fail
     } else {
       // neutral case

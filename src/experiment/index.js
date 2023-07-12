@@ -1,6 +1,9 @@
-import { initConfig } from './config';
+// index.js
+import { initConfig } from './config/config';
 import { buildExperiment } from './experiment';
 import './css/game.css';
+import configStore from '../configStore'
+import store from 'store2';
 
 export class RoarSWR {
     constructor (firekit, params, displayElement) {
@@ -13,7 +16,11 @@ export class RoarSWR {
     async init() {
       await this.firekit.startRun();
       const config = await initConfig(this.firekit, this.params, this.displayElement);
-      return buildExperiment(config);
+      // return buildExperiment(config);
+      // const newConfigValues = await initConfig(this.firekit, this.params, this.displayElement);
+      // configStore.updateConfig(newConfigValues);
+      store.session.set("config", config)
+      return buildExperiment(configStore.getConfig());
     }
   
     async run() {

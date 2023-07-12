@@ -1,4 +1,4 @@
-import { HotDogApp } from "./index";
+import { RoarSWR } from "./index";
 import { RoarAppkit, initializeFirebaseProject } from '@bdelab/roar-firekit';
 import { roarConfig } from "./firebaseConfig";
 import { onAuthStateChanged, signInAnonymously } from 'firebase/auth'
@@ -12,7 +12,7 @@ const pid = urlParams.get("PROLIFIC_PID") || urlParams.get("participant");
 const schoolId = urlParams.get("schoolId");
 const studyId = urlParams.get('studyId');
 const classId = urlParams.get('classId');
-const skip = urlParams.get("skip");
+const skipInstructions = urlParams.get("skip");
 const audioFeedback = urlParams.get("feedback");
 const consent = urlParams.get("consent");
 const numAdaptive = urlParams.get("numAdaptive");
@@ -42,6 +42,15 @@ onAuthStateChanged(appKit.auth, (user) => {
                          studyId, 
                          classId, 
                          schoolId, 
+                         taskVariant,
+                         skipInstructions,
+                         audioFeedback,
+                         consent,
+                         numAdaptive,
+                         numNew,
+                         numValidated,
+                         labId,
+                         gameId,
                          randomField: 42 
                        };
         const taskInfo = {
@@ -55,7 +64,7 @@ onAuthStateChanged(appKit.auth, (user) => {
             userInfo,
         })
 
-        const roarApp = new HotDogApp(firekit, params);
+        const roarApp = new RoarSWR(firekit, params);
 
         roarApp.run();
     }

@@ -1,11 +1,29 @@
 /* eslint-disable no-plusplus */
 import {
-  config, realpseudo2arrow, readCSV, shuffle,
+  config, shuffle,
 } from "./config";
-
+import Papa from 'papaparse'
 import i18next from "i18next";
 import '../i18n'
 import { wordlist } from "../i18n";
+
+/* csv helper function */
+const readCSV = (url) =>
+  new Promise((resolve) => {
+    Papa.parse(url, {
+      download: true,
+      header: true,
+      dynamicTyping: true,
+      skipEmptyLines: true,
+      complete: function (results) {
+        const csv_stimuli = results.data;
+        resolve(csv_stimuli);
+      },
+    });
+  });
+
+const realpseudo2arrow = (realpseudo) =>
+  (realpseudo === "real" ? "ArrowRight" : "ArrowLeft");
 
 // addAsset :: (k, Promise a) -> Promise (k, a)
 const addAsset = ([name, assetPromise]) =>
@@ -47,7 +65,7 @@ export const corpusAll = {
   corpus_real: csvTransformed.validated.filter((row) => row.realpseudo === "real"),
 };
 
-export const blockPractice = csvTransformed.practice.slice(0, config.totalTrialsPractice);
+export const blockPractice = ({ totalTrialsPractice }) => csvTransformed.practice.slice(0, totalTrialsPractice);
 
 export const corpusNew = {
   name: "corpusNew",

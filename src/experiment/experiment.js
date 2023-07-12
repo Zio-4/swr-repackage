@@ -28,6 +28,8 @@ import { initRoarJsPsych, initRoarTimeline } from './config';
 
 export function buildExperiment(config) {
 
+  console.log('config in store2: ', store.get('config'))
+
   // Initialize jsPsych and timeline
   const jsPsych = initRoarJsPsych(config);
   let timeline = initRoarTimeline(config);
@@ -50,7 +52,9 @@ export function buildExperiment(config) {
     });
   }
 
-  pushPracticeTotimeline(blockPractice);
+  const blockPracticeStimuli = blockPractice(config);
+
+  pushPracticeTotimeline(blockPracticeStimuli);
   timeline.push(post_practice_intro);
   timeline.push(if_not_fullscreen);
 
