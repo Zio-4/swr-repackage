@@ -1,9 +1,8 @@
 import { RoarAppkit, initializeFirebaseProject } from "@bdelab/roar-firekit";
 import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
-import RoarSWR from "../src/experiment/index";
+import RoarSWR from "../src/index";
 import { roarConfig } from "./firebaseConfig";
 import { setRandomUserMode } from "../src/experiment/config/config";
-import assets from "../assets.json";
 
 // Import necessary for async in the top level of the experiment script
 import "regenerator-runtime/runtime";

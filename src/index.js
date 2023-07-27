@@ -1,9 +1,9 @@
 /* eslint-disable import/extensions */
 import store from "store2";
-import { initConfig } from "./config/config";
-import { buildExperiment } from "./experiment";
-import { waitFor } from "./helperFunctions";
-import "./css/game.css";
+import { initConfig } from "./experiment/config/config";
+import { buildExperiment } from "./experiment/experiment";
+import "./experiment/css/game.css";
+import { waitFor } from "./experiment/helperFunctions";
 
 class RoarSWR {
   constructor(firekit, gameParams, userParams, displayElement) {
