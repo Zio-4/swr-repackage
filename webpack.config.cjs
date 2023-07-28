@@ -83,12 +83,9 @@ const commonConfig = {
           {
             loader: "csv-loader",
             options: {
-              // download: true,
               header: true,
               dynamicTyping: true,
               skipEmptyLines: true,
-              // name: "[name].[ext]",
-              // outputPath: "corpora",
             },
           },
         ],
